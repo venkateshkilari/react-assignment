@@ -1,4 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##  Assumptions and UX
+1.  Stories data can increase with time so grid is used.
+2.  Fields in the stories are currently minimum so modal is used instead of new page.
+3.  According to the doocument admin can do accept and reject, so instead of new page inline buttons are given on grid to perform action quickly.
+
+## Technical Info
+1. Redux is not used as the task can  be easily achieved with hooks rather than making it complex with redux.
+2. Unit Test are not done due to lack of time.
+
+## Known Bugs
+1. Estimated hrs and Cost are saving as 0 even passed to api with values, didn't got time to debug issue in the backend.
 
 ## Available Scripts
 
