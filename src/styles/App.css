@@ -1,0 +1,95 @@
+.App {
+  text-align: center;
+  width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: aliceblue;
+
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+.login-container{
+  display: flex;
+  align-items: center;
+    justify-content: center;
+    vertical-align: middle;  
+}
+.login-container .login-col{
+  position: absolute;
+    top: 30%;
+    padding: 5px;
+}
+.App .storieslist-contianer{
+  width: 95%;
+  justify-content: center;
+  margin: 70px 0 0 2.5%;
+}
+
+.App .header{
+  width: 100%;
+  position: fixed;
+  height: 50px;
+}
+
+.App .header .header-user-name{
+  margin-top: -9px;
+  float: right;
+  max-width: 165px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.App .header .header-user-name .material-icons.MuiIcon-root{
+  height: 28px;
+}
+.App .header .header-user-name .material-icons.MuiIcon-root .MuiSvgIcon-root{
+  font-size: 22px;
+}
+.App .header .header-logout  .MuiSvgIcon-root{
+  font-size: 22px;
+  color:black;
+}
+.App .header .header-user-name .header-user-name-text{
+  position: relative;
+  bottom: 2px;
+  font-size: 22px;
+}
+
+.App .header  .header-logout{
+  margin-top: -13px;
+  float: right;
+  display: inline-block;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
