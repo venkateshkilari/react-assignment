@@ -159,8 +159,10 @@ export default function(){
       const {state} = useContext(Store);
       const [open, setOpen] = React.useState(false);
       const [storyData, setStoryData] = useReducer(StoryReducer,{type:"",complexity:""});
+      const [feildErrors, setFieldErrors] = useState({});
 
       const createStory = async()=>{
+          if(validateStory()){
           let storyToAdd =  {};
           storyToAdd.complexity = storyData.complexity;
           storyToAdd.cost=  parseInt(storyData.cost||"0");
@@ -174,7 +176,33 @@ export default function(){
         dataToUpdate.push(response);
         setData(dataToUpdate);
         setOpen(false);
+          }
       }
+
+      const validateStory = ()=>{
+          let isValid = true;
+          let errors={};
+        if(!storyData.complexity){
+          errors.complexity = true;
+          isValid = false
+        }
+        if(!storyData.summary){
+            errors.summary = true;
+            isValid = false
+          }
+          if(!storyData.description){
+            errors.description = true;
+            isValid = false
+          }
+          if(!storyData.type){
+            errors.type = true;
+            isValid = false
+          }
+      setFieldErrors(errors);
+      return isValid;
+        
+      }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -268,19 +296,19 @@ export default function(){
         <div>
     <div className="row">
         <div className="col-sm-12">
-    <Input id="Summary" name="Summary" label="Summary"  style={{width:"300px"}} onChange={(event)=>{setStoryData({type:"summary", payload: event.target.value }) }}/>
+    <Input id="Summary" name="Summary" label="Summary"  style={{width:"300px"}} error={feildErrors.summary}  onChange={(event)=>{setStoryData({type:"summary", payload: event.target.value }) }}/>
     </div>
     </div>
     <div className="row">
         <div className="col-sm-12">
-    <TextArea id="Description" name="Description" style={{width:"300px"}} label="Description" onChange={(event)=>{setStoryData({type:"description", payload: event.target.value }) }}/>
+    <TextArea id="Description" name="Description" style={{width:"300px"}} label="Description"  error={feildErrors.description} onChange={(event)=>{setStoryData({type:"description", payload: event.target.value }) }}/>
     </div>
     </div>
     <div className="row">
         <div className="col-sm-12">
     <FormControl>
     <InputLabel htmlFor="Type">Type</InputLabel>
-    <Select labelId="Type"  value={storyData.typeDropdown} style={{width:"300px"}} onChange={(event)=>{setStoryData({type:"type", payload: event.target.value }) }}>
+    <Select labelId="Type"  value={storyData.typeDropdown} style={{width:"300px"}} error={feildErrors.type} onChange={(event)=>{setStoryData({type:"type", payload: event.target.value }) }}>
   
          <MenuItem value={"enhancement"}>enhancement</MenuItem>
           <MenuItem value={"bugfix"}>bugfix</MenuItem>
@@ -294,7 +322,7 @@ export default function(){
         <div className="col-sm-12">
         <FormControl>
     <InputLabel htmlFor="Complexity">Complexity</InputLabel>
-    <Select labelId="Complexity" value={storyData.complexityDropdown} style={{width:"300px"}} onChange={(event)=>{setStoryData({type:"complexity", payload: event.target.value }) }}>
+    <Select labelId="Complexity" value={storyData.complexityDropdown} error={feildErrors.complexity} style={{width:"300px"}} onChange={(event)=>{setStoryData({type:"complexity", payload: event.target.value }) }}>
        <MenuItem value="" ></MenuItem>
         <MenuItem value="low" >low</MenuItem>
         <MenuItem value="medium">medium</MenuItem>
